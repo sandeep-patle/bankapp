@@ -1,9 +1,16 @@
 class WelcomeController < ApplicationController
+
+  before_filter :checked_logged_in_status
   
   def index
   end
 
   def login
+    if session[:user_id].present?
+      flash[:error] = "You are already logged in from other session"
+      render :index
+    end
+
   	if params[:user_id].blank? || params[:password].blank?
   		flash[:error] = "User name and password can't blank."
   		render :index

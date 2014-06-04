@@ -8,19 +8,18 @@
 <% end %>
 
 <div class="span10">
-<%= form_tag( { :action => :login, }, { :method => :post }) do %>
-  <div class="field">
-    <%= label_tag "User Name" %><br />
-    <%= text_field "user", "user_id", "size" => 20 %>
-  </div>
-  <div class="field">
-    <%= label_tag 'Password' %><br />
-    <%= text_field "user", "password", "size" => 20 %>
-  </div>  
-  <div class="actions">
-    <%= submit_tag "Login", :class => "btn btn-primary" %>
-  </div>
-<% end %>
-
+  <%= form_tag( { :action => :login, }, { :method => :post }) do %>
+    <div class="field">
+      <%= label_tag "User Name" %><br />
+      <%= text_field "user", "user_id", "size" => 20 %>
+    </div>
+    <div class="field">
+      <%= label_tag 'Password' %><br />
+      <%= text_field "user", "password", "size" => 20 %>
+    </div>  
+    <div class="actions">
+      <%= submit_tag "Login", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
 

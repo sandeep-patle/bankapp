@@ -16,8 +16,9 @@ Bankapp::Application.routes.draw do
 
   get "user_dashboard/fund_transfer"
 
-  resources :accounts
+  post "user_dashboard/transfer_fund"
 
+  resources :accounts
 
   resources :users
 

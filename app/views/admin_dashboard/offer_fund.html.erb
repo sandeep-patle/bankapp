@@ -10,17 +10,17 @@
 <% end %>
 
 <div class="span10">
-<%= form_tag( { :action => :transfer_fund, }, { :method => :post }) do %>
+<%= form_tag( { :action => :transfer_fund }, { :method => :post }) do %>
   <div class="field">
     <%= label_tag "User Name" %><br />
-   <%= select_tag(:user_id, options_for_select(@users_array)) %>
+   <%= select_tag( "account_transaction[receiver_id]", options_for_select(@users_array)) %>
   </div>
   <div class="field">
     <%= label_tag 'Amount' %><br />
-    <%= text_field "user", "amount", "size" => 20 %>
+    <%= text_field "account_transaction", "amount", "size" => 20 %>
   </div>  
   <div class="actions">
-    <%= submit_tag "Login", :class => "btn btn-primary" %>
+    <%= submit_tag "Transfer", :class => "btn btn-primary" %>
   </div>
 <% end %>
 </div>

@@ -3,20 +3,13 @@
 <br />
 <br />
 
-<%- unless flash[:notice].blank? %>
-    <div class="alert alert-success"><%= flash[:notice] %> </div>
-<% end %>
-<%- unless flash[:error].blank? %>
-    <div class="alert alert-error"><%= flash[:error] %> </div>
-<% end %>
-
 <div class="span10">
 <%= form_tag( { :action => :transfer_fund }, { :method => :post }) do %>
   <%= hidden_field_tag 'account_transaction[sender_id]', @user.account.id %>
   <%= hidden_field_tag 'account_transaction[transaction_type]', "NEFT" %>
   <div class="field">
     <%= label_tag "User Name" %><br />
-   <%= select_tag( "account_transaction[receiver_id]", options_for_select(@users_array)) %>
+   <%= select_tag( "account_transaction[receiver_id]", options_for_select(@users_array), :prompt => 'Select User' ) %>
   </div>
   <div class="field">
     <%= label_tag 'Amount' %><br />

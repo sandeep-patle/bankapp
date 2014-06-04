@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140604075047) do
+ActiveRecord::Schema.define(:version => 20140604075754) do
 
   create_table "account_transactions", :force => true do |t|
-    t.integer  "from_account_number"
-    t.integer  "to_account_number"
-    t.decimal  "amount",              :precision => 5, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.decimal  "amount",           :precision => 5, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
     t.string   "transaction_type"
     t.string   "depositer"
   end
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20140604075047) do
     t.string   "city"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
+    t.string   "user_id"
+    t.string   "password"
     t.string   "role",          :default => "account_holder"
   end
 

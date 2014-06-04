@@ -2,13 +2,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
+  <b>Name:</b>
+  <%= "#{@user.first_name} #{@user.last_name}" %>
 </p>
 
 <p>
@@ -25,10 +20,55 @@
 
 <p>
   <b>Account Number:</b>
-  <%= @user.account.account_number %>
+  <%= @account.account_number %>
 </p>
 
 <p>
   <b>Balance:</b>
-  <%= @user.account.balance %>
+  <%= @account.balance %>
 </p>
+<hr />
+
+<h5>Received Transactions</h5>
+<%- if @account.receive_transactions.blank? %>
+  No Records <br />
+<%- else %>
+  <table class="table table-striped">
+    <tr>
+      <th>Sender</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+
+  <% @account.receive_transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= transaction.sender.present? ? "#{transaction.sender.first_name} #{transaction.sender.last_name}" : "Admin" %></td>
+      <td><%= transaction.amount %></td>    
+      <td><%= transaction.updated_at %></td>
+    </tr>
+  <% end %>
+  </table>
+<%- end %>
+
+<h5>Transfer Transactions</h5>
+<%- if @account.send_transactions.blank? %>
+  No Records <br />
+<%- else %>
+  <table class="table table-striped">
+    <tr>
+      <th>Receiver</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+
+  <% @account.send_transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= "#{transaction.receiver.first_name} #{transaction.receiver.last_name}" %></td>
+      <td><%= transaction.amount %></td>    
+      <td><%= transaction.updated_at %></td>
+    </tr>
+  <% end %>
+  </table>
+<%- end %>

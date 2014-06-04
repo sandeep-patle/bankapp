@@ -1,21 +1,28 @@
 class AdminDashboardController < ApplicationController
+  layout 'admin'
 
   before_filter:authenticate_admin
 
   def index
+    @users = User.where(:role => "account_holder")
   end
 
   def offer_fund
-  	@users_array = User.all.map { |user| ["#{user.first_name} #{user.last_name} - #{user.account.account_number}", user.account.id] if user.role != "admin" }
+  	@users_array = []
+    User.all.each do  |user| 
+      @users_array.push(["#{user.first_name} #{user.last_name} - #{user.account.account_number}", user.account.id]) if user.role != "admin"
+    end
   end
 
   def transfer_fund
-    if AccountTransaction.transfer_amount(params[:account_transaction])
+    params[:account_transaction][:amount] = params[:account_transaction][:amount].to_f
+    account_transaction = AccountTransaction.new(params[:account_transaction])
+    if account_transaction.transfer_amount(params[:account_transaction])
       flash[:notice] = "Fund successfully transfered."
-      render :offer_fund
+      redirect_to admin_dashboard_offer_fund_path
     else
-      flash[:error] = "Unable to transfer the fund"
-      render :offer_fund
+      flash[:error] = "Unable to transfer the fund."
+      redirect_to admin_dashboard_offer_fund_path
     end  	
   end
 

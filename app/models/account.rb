@@ -3,8 +3,8 @@ class Account < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :send_transactions, :foreign_key => "sender_id", :class_name => "AccountTransactions"
-  has_many :receive_transactions, :foreign_key => "receiver_id", :class_name => "AccountTransactions"
+  has_many :send_transactions, :foreign_key => "sender_id", :class_name => "AccountTransaction"
+  has_many :receive_transactions, :foreign_key => "receiver_id", :class_name => "AccountTransaction"
 
   def credit_amount(amount)
   	self.balance = self.balance + amount

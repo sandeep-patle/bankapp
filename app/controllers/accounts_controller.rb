@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  layout 'admin'
+
   # GET /accounts
   # GET /accounts.json
   def index
@@ -14,7 +16,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     @account = Account.find(params[:id])
-
+    #@account_transactions =  @account.
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @account }

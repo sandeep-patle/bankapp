@@ -12,9 +12,53 @@
 
 <p>
   <b>User:</b>
-  <%= @account.user_id %>
+  <%= "#{@account.user.first_name} #{@account.user.last_name}" %>
 </p>
 
+<hr />
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<h5>Received Transactions</h5>
+<%- if @account.receive_transactions.blank? %>
+  No Records <br />
+<%- else %>
+  <table class="table table-striped">
+    <tr>
+      <th>Sender</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+
+  <% @account.receive_transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= transaction.sender.present? ? "#{transaction.sender.first_name} #{transaction.sender.last_name}" : "Admin" %></td>
+      <td><%= transaction.amount %></td>    
+      <td><%= transaction.updated_at %></td>
+    </tr>
+  <% end %>
+  </table>
+<%- end %>
+
+<h5>Transfer Transactions</h5>
+<%- if @account.send_transactions.blank? %>
+  No Records <br />
+<%- else %>
+  <table class="table table-striped">
+    <tr>
+      <th>Receiver</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+
+  <% @account.send_transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= "#{transaction.receiver.first_name} #{transaction.receiver.last_name}" %></td>
+      <td><%= transaction.amount %></td>    
+      <td><%= transaction.updated_at %></td>
+    </tr>
+  <% end %>
+  </table>
+<%- end %>
+<br />
+<%= link_to 'Back', admin_dashboard_index_path %>

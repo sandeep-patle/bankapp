@@ -1,13 +1,8 @@
-<h1>AdminDashboard#index</h1>
+<h1>Admin Dashboard</h1>
 
 <%= link_to 'New User', new_user_path %>
 <br /><br />
-<%- unless flash[:notice].blank? %>
-    <div class="alert alert-success"><%= flash[:notice] %> </div>
-<% end %>
-<%- unless flash[:error].blank? %>
-    <div class="alert alert-error"><%= flash[:error] %> </div>
-<% end %>
+
 <table class="table table-striped">
   <tr>
     <th>First name</th>
@@ -15,7 +10,8 @@
     <th>Mobile number</th>
     <th>City</th>
     <th>Account No</th>
-    <th></th>
+    <th>User ID</th>
+    <th>Password</th>
     <th></th>
     <th></th>
   </tr>
@@ -27,7 +23,8 @@
     <td><%= user.mobile_number %></td>
     <td><%= user.city %></td>
     <td><%= link_to "#{user.account.account_number}", user.account %></td>
-    <td><%= link_to 'Show', user %></td>
+    <td><%= user.user_id %></td>
+    <td><%= user.password %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

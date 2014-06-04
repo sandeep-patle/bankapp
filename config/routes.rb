@@ -8,7 +8,9 @@ Bankapp::Application.routes.draw do
 
   get "admin_dashboard/index"
 
-  get "admin_dashboard/fund_transfer"
+  get "admin_dashboard/offer_fund"
+
+  post "admin_dashboard/transfer_fund"
 
   get "user_dashboard/index"
 

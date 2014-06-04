@@ -46,10 +46,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">User Dashboard</a>
+          <a class="brand" href="<%= user_dashboard_index_path %>">User Dashboard</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Account", user_path(@user) %></li>
+              <li><%= link_to "Account", user_dashboard_index_path %></li>
               <li><%= link_to "Fund Transfer", user_dashboard_fund_transfer_path %></li>              
               <li><%= link_to "Logout", welcome_logout_path %></li>
             </ul>

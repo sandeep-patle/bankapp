@@ -17,7 +17,7 @@ class AdminDashboardController < ApplicationController
   def transfer_fund
     params[:account_transaction][:amount] = params[:account_transaction][:amount].to_f
     account_transaction = AccountTransaction.new(params[:account_transaction])
-    if account_transaction.transfer_amount(params[:account_transaction])
+    if account_transaction.transfer_amount
       flash[:notice] = "Fund successfully transfered."
       redirect_to admin_dashboard_offer_fund_path
     else

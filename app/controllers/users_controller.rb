@@ -44,7 +44,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        @user.create_account(account_number: get_new_account_number)
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -79,5 +80,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_new_account_number
+    account = Account.last
+    account.present? ? account.account_number + 1 : '2001001'
   end
 end

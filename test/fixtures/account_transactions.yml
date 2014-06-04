@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  from_account_number: 1
+  to_account_number: 1
+  amount: 9.99
+
+two:
+  from_account_number: 1
+  to_account_number: 1
+  amount: 9.99

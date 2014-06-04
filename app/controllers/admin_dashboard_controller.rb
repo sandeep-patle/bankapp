@@ -14,6 +14,7 @@ class AdminDashboardController < ApplicationController
     end
   end
 
+  # attributes { :amount => 100, :depositer => "admin", :receiver_id => 1102, :transaction_type => "OFFER" }
   def transfer_fund
     params[:account_transaction][:amount] = params[:account_transaction][:amount].to_f
     account_transaction = AccountTransaction.new(params[:account_transaction])

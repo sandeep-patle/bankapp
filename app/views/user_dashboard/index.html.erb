@@ -43,7 +43,7 @@
   <% @account.receive_transactions.each do |transaction| %>
     <tr>
       <td>
-        <%= transaction.sender.present? ? "#{transaction.sender.first_name} #{transaction.sender.last_name}" : "Admin" %></td>
+        <%= transaction.sender.present? ? "#{transaction.sender.user.first_name} #{transaction.sender.user.last_name}" : "Admin" %></td>
       <td><%= transaction.amount %></td>    
       <td><%= transaction.updated_at %></td>
     </tr>
@@ -65,7 +65,7 @@
   <% @account.send_transactions.each do |transaction| %>
     <tr>
       <td>
-        <%= "#{transaction.receiver.first_name} #{transaction.receiver.last_name}" %></td>
+        <%= "#{transaction.receiver.user.first_name} #{transaction.receiver.user.last_name}" %></td>
       <td><%= transaction.amount %></td>    
       <td><%= transaction.updated_at %></td>
     </tr>

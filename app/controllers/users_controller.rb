@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
+    @user.user_id = get_new_user_id
     respond_to do |format|
       if @user.save
         @user.create_account(account_number: get_new_account_number)
@@ -86,5 +86,10 @@ class UsersController < ApplicationController
   def get_new_account_number
     account = Account.last
     account.present? ? account.account_number + 1 : '2001001'
+  end
+
+  def get_new_user_id
+    user = User.last
+    user.present? ? user.user_id + 3 : '150801'
   end
 end
